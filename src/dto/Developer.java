@@ -1,11 +1,14 @@
 package dto;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -50,8 +53,11 @@ public class Developer {
 	@Column(name = "lname")
 	private String lastName;
 
-	@OneToOne(cascade=CascadeType.ALL)
-	private Technology technology;
+	@OneToOne(cascade = CascadeType.ALL)
+	private ContactInformation contactInformation;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Technology> technology;
 
 	// Getters Setters
 	public String getFirstName() {
@@ -70,12 +76,28 @@ public class Developer {
 		this.lastName = lastName;
 	}
 
-	public Technology getTechnology() {
+	public List<Technology> getTechnology() {
 		return technology;
 	}
 
-	public void setTechnology(Technology technology) {
+	public void setTechnology(List<Technology> technology) {
 		this.technology = technology;
+	}
+
+	public ContactInformation getContactInformation() {
+		return contactInformation;
+	}
+
+	public void setContactInformation(ContactInformation contactInformation) {
+		this.contactInformation = contactInformation;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
