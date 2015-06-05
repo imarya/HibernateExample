@@ -6,8 +6,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import dto.ContactInformation;
+import dto.Address;
+import dto.Company;
 import dto.Developer;
+import dto.EmailIdentity;
 import dto.Technology;
 
 public class HibernateTester {
@@ -30,26 +32,45 @@ public class HibernateTester {
 		Technology technology3 = new Technology();
 		technology3.setName("Hibernate");
 
-		ContactInformation contactInformation = new ContactInformation();
-		contactInformation.setEmail("impradeeparya@yahoo.co.in");
-		contactInformation.setPhoneNumber("+919999710381");
+		EmailIdentity emailId = new EmailIdentity();
+		emailId.setEmail("impradeeparya@yahoo.co.in");
 
+		Address address = new Address();
+		address.setCountry("India");
+		address.setState("New Delhi");
+		address.setStreet("Punjabi Bagh");
+		address.setHouseNumber("69");
+
+		Company company = new Company();
+		company.setName("Samsung R&D");
+
+		/* First Row */
 		Developer developer = new Developer();
 		developer.setFirstName("Pradeep");
 		developer.setLastName("Arya");
-		developer.setContactInformation(contactInformation);
+		developer.setEmailId(Arrays.asList(emailId));
 		developer.setTechnology(Arrays.asList(technology, technology1));
+		developer.setAddress(address);
+		developer.setCompany(company);
 
-		ContactInformation contactInformation1 = new ContactInformation();
-		contactInformation1.setEmail("impradeeparya@gmail.com");
-		contactInformation1.setPhoneNumber("+919999710381");
-		
+		EmailIdentity emailId1 = new EmailIdentity();
+		emailId1.setEmail("impradeeparya@gmail.com");
+
+		Address address1 = new Address();
+		address1.setCountry("India");
+		address1.setState("Gurgaon");
+		address1.setStreet("DLF");
+		address1.setHouseNumber("10");
+
+		/* Second Row */
 		Developer developer1 = new Developer();
 		developer1.setFirstName("Deepu");
 		developer1.setLastName("Arya");
-		// developer1.setContactInformation(contactInformation);
-		developer1.setContactInformation(contactInformation1);
-		developer1.setTechnology(Arrays.asList(technology2, technology3));
+		developer1.setEmailId(Arrays.asList(emailId1));
+		developer1.setTechnology(Arrays.asList(technology, technology1,
+				technology2, technology3));
+		developer1.setAddress(address1);
+		developer1.setCompany(company);
 
 		session.save(developer);
 		session.save(developer1);

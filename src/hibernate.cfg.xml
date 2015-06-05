@@ -16,8 +16,10 @@
 		<!-- <mapping class="dto.Student" /> -->
 		<mapping class="dto.Developer" />
 		<mapping class="dto.Technology" />
-		<mapping class="dto.ContactInformation" />
-	
+		<mapping class="dto.EmailIdentity" />
+		<mapping class="dto.Address" />
+		<mapping class="dto.Company" />
+
 	</session-factory>
 
 </hibernate-configuration>  

@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -55,11 +57,18 @@ public class Developer {
 	private String lastName;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="contact_information_id", unique = true)
-	private ContactInformation contactInformation;
+	@JoinColumn(name = "address_id", unique = true)
+	private Address address;
 
 	@OneToMany(cascade = CascadeType.ALL)
+	private List<EmailIdentity> emailId;
+
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Technology> technology;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="company_id")
+	private Company company;
 
 	// Getters Setters
 	public String getFirstName() {
@@ -86,20 +95,36 @@ public class Developer {
 		this.technology = technology;
 	}
 
-	public ContactInformation getContactInformation() {
-		return contactInformation;
-	}
-
-	public void setContactInformation(ContactInformation contactInformation) {
-		this.contactInformation = contactInformation;
-	}
-
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public List<EmailIdentity> getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(List<EmailIdentity> emailId) {
+		this.emailId = emailId;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 }
