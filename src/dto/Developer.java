@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -54,6 +55,7 @@ public class Developer {
 	private String lastName;
 
 	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="contact_information_id", unique = true)
 	private ContactInformation contactInformation;
 
 	@OneToMany(cascade = CascadeType.ALL)

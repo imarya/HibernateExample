@@ -2,6 +2,8 @@ package dto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,11 +11,12 @@ import javax.persistence.Table;
 @Table(name = "contactInformation")
 public class ContactInformation {
 
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "emaiId")
+	@Column(name = "emaiId", unique = true)
 	private String email;
 
 	@Column(name = "phoneNumber")
