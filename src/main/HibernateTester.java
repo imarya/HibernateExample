@@ -16,6 +16,7 @@ public class HibernateTester {
 
 	public static void main(String[] args) {
 
+		/* Creating and Saving Data */
 		SessionFactory sessionFactory = SessionUtil.getInstance();
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -77,6 +78,19 @@ public class HibernateTester {
 		tx.commit();
 		session.close();
 
+		/* Removing Data */
+		sessionFactory = SessionUtil.getInstance();
+		session = sessionFactory.openSession();
+		tx = session.beginTransaction();
+
+		Developer developer2 = (Developer) session.get(Developer.class, 2);
+		System.out.println("Developer Name : " + developer2.getFirstName());
+		session.delete(developer2); // Throws exception foreign key constraint
+									// as you cannot delete ManyToMany and
+									// ManyToOne Column because they have
+									// reference for other column also.
+		tx.commit();
+		session.close();
 	}
 
 }
