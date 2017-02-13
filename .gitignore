@@ -1,2 +1,11 @@
 /bin/
 *.class
+.classpath
+.project
+.settings
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
